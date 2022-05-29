@@ -32,6 +32,23 @@ namespace productcatalogue
             Console.WriteLine(product.CalculateTax());
             int.Parse(Console.ReadLine());
         }
+
+        // View a catalogue
+
+
+
+        // Add a new product to a catalog
+
+
+
+        // Remove a product
+
+
+
+        // Remove a catalogue
+
+
+
     }
 }
 
