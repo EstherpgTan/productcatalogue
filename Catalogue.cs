@@ -9,7 +9,7 @@ namespace productcatalogue
         public string name;
         public T First => _collection[0];
         public T Second => _collection[1];
-        public Catalogue() { };
+        public Catalogue() { }
 
         public Catalogue(string newName)
         {
