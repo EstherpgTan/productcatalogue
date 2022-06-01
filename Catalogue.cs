@@ -39,7 +39,7 @@ namespace productcatalogue
 
             foreach (T item in _collection)
             {
-                Console.WriteLine(item.Name);
+                Console.WriteLine($"{item.TypeOfItem} - {item.Price}");
             }
         }
 

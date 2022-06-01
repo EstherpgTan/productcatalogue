@@ -34,17 +34,17 @@ namespace productcatalogue
             Console.WriteLine("Select an option:");
         }
 
-        public void userChoice()
+        public static void userChoice(Catalogue<product> catalogue,string example)
         {
 
-            switch (Console.ReadLine())
+            switch (example)
             {
                 case "1":
-                    ViewCatalogue();
+                    ViewCatalogue(catalogue);
                     break;
 
                 case "2":
-                    AddProductToCatalogue();
+                    AddProductToCatalogue(catalogue);
                     break;
 
                 case "3":
@@ -57,27 +57,51 @@ namespace productcatalogue
             }
         }
 
-        static string ViewCatalogue()
+        static void ViewCatalogue(Catalogue<product> someCatalogue)
         {
-            Console.WriteLine("Enter 1 to view catalogue: ");
-            Console.WriteLine("Enter bags or shoes: ");
-            return Console.ReadLine();
+            if (someCatalogue._collection.Count > 0)
+                {
+                someCatalogue.printCollection();
+            }
+            else
+            {
+                Console.WriteLine("No products available");
+            }  
         }
 
-        static void AddProductToCatalogue()
+
+        static void AddProductToCatalogue(Catalogue<product> someCatalogue)
         {
-            Console.WriteLine("Enter 2 to add a new product to a catalogue: ");
+            Console.WriteLine("Please enter the price of product");
+            double priceFromUser = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Please enter the type of product");
+            string typeFromUser = Console.ReadLine();
+            Console.WriteLine("Please enter the size of product");
+            int sizeFromUser = int.Parse(Console.ReadLine());
+
+            shoes PairOfShoes = new shoes(priceFromUser, typeFromUser, sizeFromUser);
+            Console.WriteLine(PairOfShoes);
+
+
+            someCatalogue.Add(PairOfShoes);
+
+            //Console.WriteLine("Enter 2 to add a new product to a catalogue: ");
+            //int AddProductToCatalogue = int.Parse(Console.ReadLine());
         }
+
 
         static void RemoveProduct()
         {
             Console.WriteLine("Enter 3 to remove a product: ");
+            int removeProduct = int.Parse(Console.ReadLine());
         }
 
         static void RemoveCatalogue()
         {
             Console.WriteLine("Enter 4 to remove a catalogue: ");
+            int RemoveCatalogue = int.Parse(Console.ReadLine());
         }
+
 
     }
 }

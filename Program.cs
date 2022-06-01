@@ -11,45 +11,43 @@ namespace productcatalogue
     internal class Program {
         static void Main(string[] args)
         {
-            // View catalogue
-            Catalogue<bags> bagCatalogue = new Catalogue<bags>();
-            Catalogue<shoes> shoeCatalogue = new Catalogue<shoes>();
-
-            bags newBag = new bags(10);
-
             menu.runMenu();
 
-            printCatalogue(_collection);
+            // View catalogue
+            Catalogue<product> productCatalogue = new Catalogue<product>();
+            //Catalogue<shoes> shoeCatalogue = new Catalogue<shoes>();
 
-            // Add product to catalogue
+            bags newBag = new bags(10.00, "handbag", 2);
+            shoes newShoe = new shoes(50.00, "boots", 4);
 
-            AddCatalogues;
+            // Add a new product
 
-            // Remove product
-
-
-            // Remove catalogue
-            DeleteCatalogue;
+            string example = Console.ReadLine();
+            menu.userChoice(productCatalogue, example);
 
 
-            // new class menu
-            // display menu method
-            // empty constructor
-            // display menu take in an array of options. Render each option to the console.
+            //Console.WriteLine(newBag);
+            //Console.WriteLine(newShoe);
 
-            // Inside program create a new instance of menu class, run display method on instance
-            // .eg. menu.DisplayOptions pass in array of view of catalogue etc
-            // Create a new instance of a catalogue
+            //// Add product to catalogue
+            //bagCatalogue.Add(newBag);
+          
+            //bagCatalogue.printCollection();
+            //Console.WriteLine(shoeCatalogue._collection[0]);
+            //Console.WriteLine(shoeCatalogue._collection[0].TypeOfItem);
 
-            // Console.ReadLine()
-            // Switch statement
-            // Use the printCollection method to print
-            // If add product to catalgue : Create a new bag or shoe ? Run the new bag/shoe method
 
-            // Remove a product
-            // What product you want to remove ?
-            // FInd product in catalogue list _Collection
-            // Then remove it
+            //// Remove product
+            //bagCatalogue.Remove(bag);
+            //myCatalogue.Remove(boots);
+            //Console.WriteLine(handbag);
+            //Console.WriteLine(boots);
+
+            //// Remove/delete catalogue
+            //myCatalogue.RemoveCatalogue();
+
+            //myCatalogue[0].Clear();
+            //myCatalogue[1].Clear();
 
         }
 
