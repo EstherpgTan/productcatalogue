@@ -12,13 +12,8 @@ namespace productcatalogue
     {
         // Console Menu
         public static void runMenu()
-        {
-            bool showMenu = true;
-            while (showMenu)
-            {
+        {     
                 MainMenu();
-                showMenu = false;
-            }
         }
 
         static void MainMenu()
@@ -34,7 +29,7 @@ namespace productcatalogue
             Console.WriteLine("Select an option:");
         }
 
-        public static void userChoice(Catalogue<product> catalogue,string example)
+        public static void userChoice(Catalogue<product> catalogue, string example)
         {
 
             switch (example)
@@ -48,11 +43,11 @@ namespace productcatalogue
                     break;
 
                 case "3":
-                    RemoveProduct();
+                    RemoveProduct(catalogue);
                     break;
 
                 case "4":
-                    RemoveCatalogue();
+                    RemoveCatalogue(catalogue);
                     break;
             }
         }
@@ -60,14 +55,15 @@ namespace productcatalogue
         static void ViewCatalogue(Catalogue<product> someCatalogue)
         {
             if (someCatalogue._collection.Count > 0)
-                {
+            {
                 someCatalogue.printCollection();
             }
             else
             {
-                Console.WriteLine("No products available");
-            }  
+                Console.WriteLine("No products available, choose another option");
+            }
         }
+
 
 
         static void AddProductToCatalogue(Catalogue<product> someCatalogue)
@@ -82,7 +78,6 @@ namespace productcatalogue
             shoes PairOfShoes = new shoes(priceFromUser, typeFromUser, sizeFromUser);
             Console.WriteLine(PairOfShoes);
 
-
             someCatalogue.Add(PairOfShoes);
 
             //Console.WriteLine("Enter 2 to add a new product to a catalogue: ");
@@ -90,13 +85,23 @@ namespace productcatalogue
         }
 
 
-        static void RemoveProduct()
+        static void RemoveProduct(Catalogue<product> someCatalogue)
         {
-            Console.WriteLine("Enter 3 to remove a product: ");
+
+            someCatalogue.printCollection();
+
+            Console.WriteLine("Which product would you like to remove?");
             int removeProduct = int.Parse(Console.ReadLine());
+
+            someCatalogue._collection.RemoveAt(removeProduct);
+
+            Console.WriteLine("These are all the products in the catalogue after deletion of product");
+
+            someCatalogue.printCollection();
+
         }
 
-        static void RemoveCatalogue()
+        static void RemoveCatalogue(Catalogue<product> someCatalogue)
         {
             Console.WriteLine("Enter 4 to remove a catalogue: ");
             int RemoveCatalogue = int.Parse(Console.ReadLine());
@@ -105,7 +110,9 @@ namespace productcatalogue
 
     }
 }
-        
+
+  
+
     
 
 
