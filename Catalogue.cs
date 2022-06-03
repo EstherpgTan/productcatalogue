@@ -20,11 +20,6 @@ namespace productcatalogue
         {
             name = newName;
         }
-        //public Catalogue(T bags, T shoes)
-        //{
-        //    _collection[0] = item;
-        //    _collection[1] = item;
-        //}
 
         // Number of items/products
 
@@ -35,10 +30,12 @@ namespace productcatalogue
 
         public void printCollection()
         {
-
+            int index = 0;
+            
             foreach (T item in _collection)
             {
-                Console.WriteLine($"{item.TypeOfItem} - {item.Price}");
+                Console.WriteLine($"{index}. {item.TypeOfItem} - {item.Price}");
+                index++;
             }
         }
 

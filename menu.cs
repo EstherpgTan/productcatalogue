@@ -11,12 +11,9 @@ namespace productcatalogue
     public class menu
     {
         // Console Menu
-        public static void runMenu()
-        {     
-                MainMenu();
-        }
+        
 
-        static void MainMenu()
+        public static void MainMenu()
         {
             // Prints to a blank screen
             Console.Clear();
@@ -29,7 +26,7 @@ namespace productcatalogue
             Console.WriteLine("Select an option:");
         }
 
-        public static void userChoice(Catalogue<product> catalogue, string example)
+        public static void userChoice(Catalogue<product> catalogue, string example, bool someBoolean)
         {
 
             switch (example)
@@ -47,41 +44,40 @@ namespace productcatalogue
                     break;
 
                 case "4":
-                    RemoveCatalogue(catalogue);
+                    RemoveCatalogue(catalogue, someBoolean);
                     break;
             }
         }
 
         static void ViewCatalogue(Catalogue<product> someCatalogue)
         {
+           
             if (someCatalogue._collection.Count > 0)
             {
                 someCatalogue.printCollection();
             }
             else
             {
-                Console.WriteLine("No products available, choose another option");
+                Console.WriteLine("No products available, choose another option:");
+
             }
+            Console.WriteLine("Please press any key to continue:");
+            string key = Console.ReadLine();
         }
-
-
 
         static void AddProductToCatalogue(Catalogue<product> someCatalogue)
         {
-            Console.WriteLine("Please enter the price of product");
+            Console.WriteLine("Please enter the price of product:");
             double priceFromUser = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Please enter the type of product");
+            Console.WriteLine("Please enter the type of product:");
             string typeFromUser = Console.ReadLine();
-            Console.WriteLine("Please enter the size of product");
+            Console.WriteLine("Please enter the size of product, enter in a number:");
             int sizeFromUser = int.Parse(Console.ReadLine());
 
             shoes PairOfShoes = new shoes(priceFromUser, typeFromUser, sizeFromUser);
             Console.WriteLine(PairOfShoes);
 
             someCatalogue.Add(PairOfShoes);
-
-            //Console.WriteLine("Enter 2 to add a new product to a catalogue: ");
-            //int AddProductToCatalogue = int.Parse(Console.ReadLine());
         }
 
 
@@ -90,7 +86,7 @@ namespace productcatalogue
 
             someCatalogue.printCollection();
 
-            Console.WriteLine("Which product would you like to remove?");
+            Console.WriteLine("Which product would you like to remove? Please type in a number.");
             int removeProduct = int.Parse(Console.ReadLine());
 
             someCatalogue._collection.RemoveAt(removeProduct);
@@ -101,10 +97,15 @@ namespace productcatalogue
 
         }
 
-        static void RemoveCatalogue(Catalogue<product> someCatalogue)
+        static void RemoveCatalogue(Catalogue<product> someCatalogue, bool someBoolean)
         {
-            Console.WriteLine("Enter 4 to remove a catalogue: ");
-            int RemoveCatalogue = int.Parse(Console.ReadLine());
+            someCatalogue = null;
+            Console.WriteLine("Catalogue deleted");
+            someBoolean = false;
+            Console.WriteLine("Press any key to exit");
+            string anyKey = Console.ReadLine();
+            Console.Clear();
+
         }
 
 
