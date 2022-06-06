@@ -9,9 +9,16 @@ using System.Text.Json;
 namespace productcatalogue
 {
     internal class Program {
+
+        static string productData;
+        static Catalogue<product> productCatalogue;
+
         static void Main(string[] args)
         {
             // Runs the menu
+
+            //productData = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "ProductCatalogue.json"));
+            //Catalogue<product> productCatalogue = JsonSerializer.Deserialize<Catalogue<product>>(productData);
 
             Catalogue<product> productCatalogue = new Catalogue<product>();
 
@@ -25,7 +32,8 @@ namespace productcatalogue
                 
                 menu.userChoice(productCatalogue, chosenNumber, runMenu);
             }
-           
+
+
         }
 
     }

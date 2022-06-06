@@ -10,8 +10,15 @@ namespace productcatalogue
 {
     public class menu
     {
-        // Console Menu
-        
+        static string productData;
+        static Catalogue<product> productCatalogue;
+
+        static string filepath = "";
+
+        //productData = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "ProductCatalogue.json"));
+
+        Catalogue<product> ProductCatalogue = JsonSerializer.Deserialize<Catalogue<product>>(productData);
+
 
         public static void MainMenu()
         {
@@ -32,6 +39,8 @@ namespace productcatalogue
             switch (example)
             {
                 case "1":
+                   Catalogue<product> productCatalogue = new Catalogue<product>();
+                    string filepath = "";
                     ViewCatalogue(catalogue);
                     break;
 
@@ -51,7 +60,7 @@ namespace productcatalogue
 
         static void ViewCatalogue(Catalogue<product> someCatalogue)
         {
-           
+
             if (someCatalogue._collection.Count > 0)
             {
                 someCatalogue.printCollection();
@@ -78,24 +87,32 @@ namespace productcatalogue
             Console.WriteLine(PairOfShoes);
 
             someCatalogue.Add(PairOfShoes);
+
+        
+            filepath = Path.Combine(Directory.GetCurrentDirectory(), "ProductCatalogue.json");
+            File.WriteAllText(filepath, stateCatalogue.serialize(productCatalogue));
         }
 
 
         static void RemoveProduct(Catalogue<product> someCatalogue)
         {
 
-            someCatalogue.printCollection();
+        someCatalogue.printCollection();
 
-            Console.WriteLine("Which product would you like to remove? Please type in a number.");
-            int removeProduct = int.Parse(Console.ReadLine());
+        Console.WriteLine("Which product would you like to remove? Please type in a number.");
+        int removeProduct = int.Parse(Console.ReadLine());
 
-            someCatalogue._collection.RemoveAt(removeProduct);
+        someCatalogue._collection.RemoveAt(removeProduct);
 
-            Console.WriteLine("These are all the products in the catalogue after deletion of product");
+        Console.WriteLine("These are all the products in the catalogue after deletion of product");
 
-            someCatalogue.printCollection();
+        someCatalogue.printCollection();
 
-        }
+        filepath = Path.Combine(Directory.GetCurrentDirectory(), "ProductCatalogue.json");
+        File.WriteAllText(filepath, stateCatalogue.serialize(productCatalogue));
+
+    }
+        
 
         static void RemoveCatalogue(Catalogue<product> someCatalogue, bool someBoolean)
         {
@@ -105,6 +122,9 @@ namespace productcatalogue
             Console.WriteLine("Press any key to exit");
             string anyKey = Console.ReadLine();
             Console.Clear();
+
+            filepath = Path.Combine(Directory.GetCurrentDirectory(), "ProductCatalogue.json");
+            File.WriteAllText(filepath, stateCatalogue.serialize(productCatalogue));
 
         }
 
